@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using MicroTec.Hr.Domain.Contract;
 using MicroTec.Hr.Domain.Custom_Exceptions;
 using MicroTec.Hr.Domain.Employees;

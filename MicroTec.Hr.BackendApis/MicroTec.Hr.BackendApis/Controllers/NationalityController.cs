@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MicroTec.Hr.Services.Employees.GetEmployeeById;
 using MicroTec.Hr.Services.Nationalities.GetNationalitiesList;
 
 namespace MicroTec.Hr.BackendApi.Controllers

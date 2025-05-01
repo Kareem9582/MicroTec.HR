@@ -29,7 +29,7 @@ namespace MicroTec.Hr.Infrastructure.Shared
 
             _dbContext.Set<TEntity>().Update(entity);
         }
-        public async Task<PagedResult<TEntity>> GetPagedReadOnlyAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
+        public async Task<PagedResult<TModel>> GetPagedReadOnlyAsync<TModel>(int pageNumber, int pageSize, CancellationToken cancellationToken) where TModel : BaseModel
         {
             var query = _dbContext.Set<TEntity>();
 
@@ -37,9 +37,10 @@ namespace MicroTec.Hr.Infrastructure.Shared
             var items = await query
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
+                .ProjectTo<TModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
-            return new PagedResult<TEntity>
+            return new PagedResult<TModel>
             {
                 Items = items,
                 TotalCount = totalCount

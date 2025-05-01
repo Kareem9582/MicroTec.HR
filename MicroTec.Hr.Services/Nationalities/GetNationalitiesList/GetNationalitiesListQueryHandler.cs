@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using AutoMapper;
 using MicroTec.Hr.Domain.Contract;
-using MicroTec.Hr.Domain.Employees;
 using MicroTec.Hr.Domain.Entities;
 using MicroTec.Hr.Domain.Shared;
 

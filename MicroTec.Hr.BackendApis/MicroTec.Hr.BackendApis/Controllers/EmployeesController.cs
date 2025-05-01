@@ -3,8 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MicroTec.Hr.BackendApi.Features.Employees.CreateEmployee;
 using MicroTec.Hr.BackendApi.Features.Employees.DeleteEmployee;
+using MicroTec.Hr.BackendApi.Features.Employees.GetAllEmployees;
 using MicroTec.Hr.Services.Employees.CreateEmployee;
 using MicroTec.Hr.Services.Employees.DeleteEmployee;
+using MicroTec.Hr.Services.Employees.GetAllEmployees;
 using MicroTec.Hr.Services.Employees.GetEmployeeById;
 
 namespace MicroTec.Hr.BackendApi.Controllers
@@ -42,6 +44,13 @@ namespace MicroTec.Hr.BackendApi.Controllers
             await _mediator.Send(command);
 
             return NoContent();
+        }
+        [HttpPost("GetAllEmployees")]
+        public async Task<IActionResult> GetEmployees([FromBody] GetAllEmployeesRequest request)
+        {
+            var query = _mapper.Map<GetAllEmployeesQuery>(request);
+            var employee = await _mediator.Send(query);
+            return Ok(employee);
         }
     }
 }
