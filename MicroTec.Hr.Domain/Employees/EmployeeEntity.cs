@@ -1,0 +1,37 @@
+﻿using MicroTec.Hr.Domain.Entities;
+using MicroTec.Hr.Domain.Shared;
+
+namespace MicroTec.Hr.Domain.Employees
+{
+    public class EmployeeEntity : BaseEntity
+    {
+        // Props
+        public string EmployeeCode { get; private set; } = string.Empty;
+        public string FullName { get; private set; } = string.Empty;
+        public DateTimeOffset BirthDate { get; private set; }
+        public Guid NationalityId { get; private set; }
+        public Guid GenderId { get; private set; }
+        public List<Custody> Custodies { get; private set; } = [];
+        public Nationality Nationality { get; private set; } = default!;
+
+        public static EmployeeEntity Create(EmployeeEntity employee, Guid createdBy)
+        {
+            EmployeeValidator.Validate(employee);
+
+            employee.SetDefaults();
+            employee.SetCreated(createdBy);
+
+             employee.AddDomainEvent(new EmployeeCreatedEvent(employee.Id));
+
+            return employee;
+        }
+
+        public void MarkForDeletion(Guid userId)
+        {
+
+            IsDeleted = true;  //Keep it if the other one doesn't work. 
+            SetUpdated(userId);
+            AddDomainEvent(new EmployeeDeletedEvent(Id));
+        }
+    }
+}

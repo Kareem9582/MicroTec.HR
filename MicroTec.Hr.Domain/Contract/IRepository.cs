@@ -1,0 +1,15 @@
+﻿using MicroTec.Hr.Domain.Shared;
+
+namespace MicroTec.Hr.Domain.Contract
+{
+    public interface IRepository<TEntity> where TEntity : BaseEntity
+    {
+        Task<TEntity?> GetByIdAsync(Guid id, Guid userId , CancellationToken cancellationToken);
+        Task<TEntity?> GetByIdReadOnlyAsync(Guid id,bool includeDeleted, Guid userId , CancellationToken cancellationToken);
+        Task<IEnumerable<TEntity?>> GetAllReadOnlyAsync(CancellationToken cancellationToken);
+        Task<PagedResult<TEntity>> GetPagedReadOnlyAsync(int pageNumber, int pageSize, CancellationToken cancellationToken);
+        Task AddAsync(TEntity entity, CancellationToken cancellationToken);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
+    }
+}
