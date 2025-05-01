@@ -1,11 +1,13 @@
 ﻿using MicroTec.Hr.Domain.Contract;
+using System.ComponentModel.DataAnnotations;
 
 namespace MicroTec.Hr.Domain.Shared
 {
     public abstract class BaseEntity : IAggregateRoot
     {
         public Guid Id { get; protected set; } = Guid.NewGuid(); // Automatically assigned at creation
-
+        
+        [Timestamp]
         public byte[] RowVersion { get; set; } = new byte[8]; // For concurrency control
 
         public bool IsDeleted { get; set; }

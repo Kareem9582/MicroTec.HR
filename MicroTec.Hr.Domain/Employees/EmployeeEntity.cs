@@ -21,11 +21,21 @@ namespace MicroTec.Hr.Domain.Employees
             employee.SetDefaults();
             employee.SetCreated(createdBy);
 
-             employee.AddDomainEvent(new EmployeeCreatedEvent(employee.Id));
+            employee.AddDomainEvent(new EmployeeCreatedEvent(employee.Id));
 
             return employee;
         }
+        public void Update(string fullName, DateTimeOffset birthDate, Guid genderId, Guid nationalityId, Guid updatedBy)
+        {
+            FullName = fullName;
+            BirthDate = birthDate;
+            GenderId = genderId;
+            NationalityId = nationalityId;
 
+            SetUpdated(updatedBy);
+
+            AddDomainEvent(new EmployeeUpdatedEvent(Id));
+        }
         public void MarkForDeletion(Guid userId)
         {
 
