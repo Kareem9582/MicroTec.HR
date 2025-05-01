@@ -29,10 +29,15 @@ namespace MicroTec.Hr.Infrastructure.Shared
 
             _dbContext.Set<TEntity>().Update(entity);
         }
-        public async Task<PagedResult<TModel>> GetPagedReadOnlyAsync<TModel>(int pageNumber, int pageSize, CancellationToken cancellationToken) where TModel : BaseModel
+        public async Task<PagedResult<TModel>> GetPagedReadOnlyAsync<TModel>(int pageNumber, int pageSize, string? searchTerm, Func<IQueryable<TEntity>, string?, IQueryable<TEntity>>? applySearch = null, CancellationToken cancellationToken = default) where TModel : BaseModel
         {
-            var query = _dbContext.Set<TEntity>();
+            var query = _dbContext
+                .Set<TEntity>()
+                .AsNoTracking();
 
+            if (applySearch is not null)
+                query = applySearch(query, searchTerm);
+            
             var totalCount = await query.CountAsync(cancellationToken);
             var items = await query
                 .Skip((pageNumber - 1) * pageSize)
