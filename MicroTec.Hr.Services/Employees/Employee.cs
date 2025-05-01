@@ -1,5 +1,4 @@
-﻿using MicroTec.Hr.Domain.Entities;
-using MicroTec.Hr.Domain.Shared;
+﻿using MicroTec.Hr.Domain.Shared;
 
 namespace MicroTec.Hr.Services.Employees
 {
@@ -8,7 +7,7 @@ namespace MicroTec.Hr.Services.Employees
         public string EmployeeCode { get; init; } = string.Empty;
         public string FullName { get; init; } = string.Empty;
         public DateTimeOffset BirthDate { get; init; }
-        public List<Custody> Custodies { get; init; } = [];
-        public Nationality Nationality { get; init; } = default!;
+        public int CustodiesCount { get; init; } = 0;
+        public string Nationality { get; init; } = default!;
     }
 }

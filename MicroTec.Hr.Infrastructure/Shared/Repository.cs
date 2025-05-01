@@ -1,14 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using MicroTec.Hr.Domain.Contract;
 using MicroTec.Hr.Domain.Shared;
 using MicroTec.Hr.Infrastructure.Contexts;
 
 namespace MicroTec.Hr.Infrastructure.Shared
 {
-    internal class Repository<TEntity>(ApplicationDbContext dbContext) : IRepository<TEntity> where TEntity :  BaseEntity
+    internal class Repository<TEntity>(ApplicationDbContext dbContext , IMapper mapper) : IRepository<TEntity> where TEntity :  BaseEntity 
     {
         private readonly ApplicationDbContext _dbContext = dbContext;
-
+        private readonly IMapper _mapper = mapper;
         public async Task<TEntity?> GetByIdAsync(Guid id, Guid userId, CancellationToken cancellationToken)
             => await _dbContext.Set<TEntity>()
         .FirstOrDefaultAsync(e => e.Id == id && e.CreatedBy == userId && e.IsDeleted == false , cancellationToken);
@@ -44,17 +46,12 @@ namespace MicroTec.Hr.Infrastructure.Shared
             };
         }
 
-        public async Task<TEntity?> GetByIdReadOnlyAsync(Guid id,bool includeDeleted, Guid userId, CancellationToken cancellationToken)
-        {
-            var query = _dbContext.Set<TEntity>().AsNoTracking().Where(e => e.Id == id && e.CreatedBy == userId);
-
-            if (!includeDeleted)
-            {
-                query = query.Where(e => e.IsDeleted == false);
-            }
-
-            return await query.FirstOrDefaultAsync(cancellationToken);
-        }
+        public async Task<TModel?> GetByIdReadOnlyAsync<TModel>(Guid id, Guid userId, CancellationToken cancellationToken) where TModel : BaseModel 
+            => await _dbContext.Set<TEntity>()
+                    .AsNoTracking()
+                    .Where(employee => employee.Id == id && employee.CreatedBy == userId)
+                    .ProjectTo<TModel>(_mapper.ConfigurationProvider)
+                    .FirstOrDefaultAsync(cancellationToken);
 
         public async Task<IEnumerable<TEntity?>> GetAllReadOnlyAsync(CancellationToken cancellationToken)
             => await _dbContext.Set<TEntity>().ToListAsync(cancellationToken);

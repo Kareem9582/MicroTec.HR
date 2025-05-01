@@ -23,7 +23,7 @@ namespace MicroTec.Hr.Services.Employees.GetEmployeeById
         public async Task<Employee> Handle(GetEmployeeByIdQuery request, CancellationToken cancellationToken)
         {
             var repository = _unitOfWork.Repository<EmployeeEntity>();
-            var employeeEntity = await repository.GetByIdReadOnlyAsync(request.EmployeeId,request.IncludeDeleted, request.UserId, cancellationToken) ??
+            var employeeEntity = await repository.GetByIdReadOnlyAsync<Employee>(request.EmployeeId, request.UserId, cancellationToken) ??
                 throw new RecordNotFoundException(nameof(EmployeeEntity), request.EmployeeId);
 
             return _mapper.Map<Employee>(employeeEntity);

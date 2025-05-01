@@ -7,7 +7,9 @@ namespace MicroTec.Hr.Services.Employees.GetEmployeeById
     {
         public GetEmployeeByIdMappingProfile()
         {
-            CreateMap<EmployeeEntity, Employee>();
+            CreateMap<EmployeeEntity, Employee>()
+                .ForMember(dest => dest.CustodiesCount, opt => opt.MapFrom(x =>x.Custodies.Count))
+                .ForMember(dest => dest.Nationality, opt => opt.MapFrom(x =>x.Nationality.Name));
         }
     }
 }

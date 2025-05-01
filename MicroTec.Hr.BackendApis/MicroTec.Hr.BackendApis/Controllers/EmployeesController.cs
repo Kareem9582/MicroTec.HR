@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MicroTec.Hr.BackendApi.Features.Employees.CreateEmployee;
 using MicroTec.Hr.BackendApi.Features.Employees.DeleteEmployee;
-using MicroTec.Hr.BackendApi.Features.Employees.GetEmployeeById;
 using MicroTec.Hr.Services.Employees.CreateEmployee;
 using MicroTec.Hr.Services.Employees.DeleteEmployee;
 using MicroTec.Hr.Services.Employees.GetEmployeeById;
@@ -28,10 +27,10 @@ namespace MicroTec.Hr.BackendApi.Controllers
             return CreatedAtAction(nameof(GetEmployeeById), new { id = employeeId }, employeeId);
         }
 
-        [HttpGet("{id}/{includeDeleted}")]
-        public async Task<IActionResult> GetEmployeeById(Guid id , bool includeDeleted)
+        [HttpGet("{id}/")]
+        public async Task<IActionResult> GetEmployeeById(Guid id)
         {
-            var query = new GetEmployeeByIdQuery() { EmployeeId = id , IncludeDeleted = includeDeleted , UserId = UserId};
+            var query = new GetEmployeeByIdQuery() { EmployeeId = id , UserId = UserId};
             var employee = await _mediator.Send(query);
             return Ok(employee);
         }

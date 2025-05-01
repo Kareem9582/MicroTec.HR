@@ -5,7 +5,7 @@ namespace MicroTec.Hr.Domain.Contract
     public interface IRepository<TEntity> where TEntity : BaseEntity
     {
         Task<TEntity?> GetByIdAsync(Guid id, Guid userId , CancellationToken cancellationToken);
-        Task<TEntity?> GetByIdReadOnlyAsync(Guid id,bool includeDeleted, Guid userId , CancellationToken cancellationToken);
+        Task<TModel?> GetByIdReadOnlyAsync<TModel>(Guid id, Guid userId , CancellationToken cancellationToken) where TModel : BaseModel;
         Task<IEnumerable<TEntity?>> GetAllReadOnlyAsync(CancellationToken cancellationToken);
         Task<PagedResult<TEntity>> GetPagedReadOnlyAsync(int pageNumber, int pageSize, CancellationToken cancellationToken);
         Task AddAsync(TEntity entity, CancellationToken cancellationToken);

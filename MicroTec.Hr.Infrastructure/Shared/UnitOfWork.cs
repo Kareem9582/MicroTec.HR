@@ -1,17 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using MicroTec.Hr.Domain.Contract;
 using MicroTec.Hr.Domain.Shared;
 using MicroTec.Hr.Infrastructure.Contexts;
 
 namespace MicroTec.Hr.Infrastructure.Shared
 {
-    internal class UnitOfWork(ApplicationDbContext dbContext , IDomainEventDispatcher domainEventDispatcher) : IUnitOfWork
+    internal class UnitOfWork(ApplicationDbContext dbContext , IDomainEventDispatcher domainEventDispatcher , IMapper mapper) : IUnitOfWork
     {
         private readonly ApplicationDbContext _dbContext = dbContext;
         private readonly IDomainEventDispatcher _domainEventDispatcher = domainEventDispatcher;
-
         public IRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
-            => new Repository<TEntity>(_dbContext);
+            => new Repository<TEntity>(_dbContext , mapper);
         public IReadOnlyRepository<TEntity> ReadOnlyRepository<TEntity>() where TEntity : class, IEntity
             => new ReadOnlyRepository<TEntity>(_dbContext);
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)

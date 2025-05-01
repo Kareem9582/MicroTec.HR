@@ -6,6 +6,5 @@ namespace MicroTec.Hr.Services.Employees.GetEmployeeById
     {
         public Guid EmployeeId { get; init; }
         public Guid UserId { get; init; }
-        public bool IncludeDeleted { get; init; }
     }
 }
