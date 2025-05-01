@@ -4,9 +4,9 @@ using MicroTec.Hr.Domain.Entities;
 
 namespace MicroTec.Hr.Infrastructure.Configurations
 {
-    public class NationalityConfiguration : IEntityTypeConfiguration<Nationality>
+    public class NationalityConfiguration : IEntityTypeConfiguration<NationalityEntity>
     {
-        public void Configure(EntityTypeBuilder<Nationality> builder)
+        public void Configure(EntityTypeBuilder<NationalityEntity> builder)
         {
             builder.ToTable("Nationalities");  // Name of the table in the database
 

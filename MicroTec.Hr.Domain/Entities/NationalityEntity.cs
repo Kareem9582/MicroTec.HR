@@ -2,7 +2,7 @@
 
 namespace MicroTec.Hr.Domain.Entities
 {
-    public class Nationality : BaseReadOnlyEntity
+    public class NationalityEntity : BaseReadOnlyEntity
     {
         public string Code { get; set; } = string.Empty; // A short code (e.g., "USA", "CAN")
         public string Name { get; set; } = string.Empty; // Full name of the nationality (e.g., "United States", "Canada")

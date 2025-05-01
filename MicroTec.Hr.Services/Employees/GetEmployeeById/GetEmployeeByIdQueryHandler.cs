@@ -9,24 +9,19 @@ namespace MicroTec.Hr.Services.Employees.GetEmployeeById
     public class GetEmployeeByIdQueryHandler : IRequestHandler<GetEmployeeByIdQuery, Employee>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
 
-        public GetEmployeeByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetEmployeeByIdQueryHandler(IUnitOfWork unitOfWork)
         {
             ArgumentNullException.ThrowIfNull(unitOfWork);
-            ArgumentNullException.ThrowIfNull(mapper);
 
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
         }
 
         public async Task<Employee> Handle(GetEmployeeByIdQuery request, CancellationToken cancellationToken)
         {
             var repository = _unitOfWork.Repository<EmployeeEntity>();
-            var employeeEntity = await repository.GetByIdReadOnlyAsync<Employee>(request.EmployeeId, request.UserId, cancellationToken) ??
+            return await repository.GetByIdReadOnlyAsync<Employee>(request.EmployeeId, request.UserId, cancellationToken) ??
                 throw new RecordNotFoundException(nameof(EmployeeEntity), request.EmployeeId);
-
-            return _mapper.Map<Employee>(employeeEntity);
         }
     }
 }

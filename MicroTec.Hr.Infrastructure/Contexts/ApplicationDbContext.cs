@@ -9,7 +9,7 @@ namespace MicroTec.Hr.Infrastructure.Contexts
     {
         public DbSet<EmployeeEntity> Employees { get; set; }
         public DbSet<Custody> Custodies { get; set; }
-        public DbSet<Nationality> Nationalities { get; set; }
+        public DbSet<NationalityEntity> Nationalities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

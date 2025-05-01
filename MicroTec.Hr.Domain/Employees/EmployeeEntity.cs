@@ -12,7 +12,7 @@ namespace MicroTec.Hr.Domain.Employees
         public Guid NationalityId { get; private set; }
         public Guid GenderId { get; private set; }
         public List<Custody> Custodies { get; private set; } = [];
-        public Nationality Nationality { get; private set; } = default!;
+        public NationalityEntity Nationality { get; private set; } = default!;
 
         public static EmployeeEntity Create(EmployeeEntity employee, Guid createdBy)
         {

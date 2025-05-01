@@ -49,7 +49,7 @@ namespace MicroTec.Hr.Infrastructure.Shared
         public async Task<TModel?> GetByIdReadOnlyAsync<TModel>(Guid id, Guid userId, CancellationToken cancellationToken) where TModel : BaseModel 
             => await _dbContext.Set<TEntity>()
                     .AsNoTracking()
-                    .Where(employee => employee.Id == id && employee.CreatedBy == userId)
+                    .Where(x => x.Id == id && x.CreatedBy == userId)
                     .ProjectTo<TModel>(_mapper.ConfigurationProvider)
                     .FirstOrDefaultAsync(cancellationToken);
 

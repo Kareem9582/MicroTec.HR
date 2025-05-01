@@ -13,7 +13,7 @@ namespace MicroTec.Hr.Infrastructure.Shared
         public IRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
             => new Repository<TEntity>(_dbContext , mapper);
         public IReadOnlyRepository<TEntity> ReadOnlyRepository<TEntity>() where TEntity : class, IEntity
-            => new ReadOnlyRepository<TEntity>(_dbContext);
+            => new ReadOnlyRepository<TEntity>(_dbContext, mapper);
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             var entitiesWithEvents = _dbContext.ChangeTracker
