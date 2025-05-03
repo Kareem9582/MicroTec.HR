@@ -34,7 +34,7 @@ namespace MicroTec.Hr.BackendApi.Controllers
         [HttpGet("{id}/")]
         public async Task<IActionResult> GetEmployeeById(Guid id)
         {
-            var query = new GetEmployeeByIdQuery() { EmployeeId = id , UserId = UserId};
+            var query = new GetEmployeeByIdQuery() { EmployeeId = id, UserId = UserId };
             var employee = await _mediator.Send(query);
             return Ok(employee);
         }
@@ -42,7 +42,7 @@ namespace MicroTec.Hr.BackendApi.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteEmployee([FromBody] DeleteEmployeeRequest request)
         {
-            var command = new DeleteEmployeeCommand() { EmployeeId = request.Id, UserId = UserId};
+            var command = new DeleteEmployeeCommand() { EmployeeId = request.Id, UserId = UserId };
             await _mediator.Send(command);
 
             return NoContent();

@@ -6,7 +6,7 @@ namespace MicroTec.Hr.Domain.Shared
     public abstract class BaseEntity : IAggregateRoot
     {
         public Guid Id { get; protected set; } = Guid.NewGuid(); // Automatically assigned at creation
-        
+
         [Timestamp]
         public byte[] RowVersion { get; set; } = new byte[8]; // For concurrency control
 
@@ -17,7 +17,7 @@ namespace MicroTec.Hr.Domain.Shared
         public DateTimeOffset CreatedAt { get; private set; }
         public Guid? UpdatedBy { get; private set; }
         public DateTimeOffset? UpdatedAt { get; private set; }
-        
+
 
         private readonly List<IDomainEvent> _domainEvents = [];
         public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();

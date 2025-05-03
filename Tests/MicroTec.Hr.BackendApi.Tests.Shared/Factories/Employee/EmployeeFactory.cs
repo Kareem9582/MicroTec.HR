@@ -1,6 +1,6 @@
 ﻿using MicroTec.Hr.BackendApi.Features.Employees.CreateEmployee;
 
-namespace MicroTec.Hr.BackendApi.Tests.Features.Employees.Factories
+namespace MicroTec.Hr.BackendApi.Tests.Shared.Factories.Employee
 {
     public static class EmployeeFactory
     {

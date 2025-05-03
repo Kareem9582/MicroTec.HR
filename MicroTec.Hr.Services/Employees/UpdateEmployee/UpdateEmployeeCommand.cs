@@ -9,6 +9,6 @@ namespace MicroTec.Hr.Services.Employees.UpdateEmployee
         public DateTimeOffset BirthDate { get; init; }
         public Guid GenderId { get; init; }
         public Guid NationalityId { get; init; }
-        public Guid UserId { get; init; }    
+        public Guid UserId { get; init; }
     }
 }

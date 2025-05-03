@@ -1,6 +1,6 @@
 using FluentValidation.TestHelper;
 using MicroTec.Hr.BackendApi.Features.Employees.CreateEmployee;
-using MicroTec.Hr.BackendApi.Tests.Features.Employees.Factories;
+using MicroTec.Hr.BackendApi.Tests.Shared.Factories.Employee;
 using MicroTec.Hr.Domain.Employees;
 
 namespace MicroTec.Hr.BackendApi.Tests.Features.Employees.CreateEmployee
@@ -72,7 +72,7 @@ namespace MicroTec.Hr.BackendApi.Tests.Features.Employees.CreateEmployee
         {
             var request = EmployeeFactory.MissingNationalityId();
             var result = _validator.TestValidate(request);
-            result.ShouldHaveValidationErrorFor(x => x.GenderId)
+            result.ShouldHaveValidationErrorFor(x => x.NationalityId)
                   .WithErrorMessage("Nationality is required.");
         }
     }

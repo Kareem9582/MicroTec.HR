@@ -7,7 +7,7 @@ using MicroTec.Hr.Infrastructure.Contexts;
 
 namespace MicroTec.Hr.Infrastructure.Shared
 {
-    internal class ReadOnlyRepository<TEntity>(ApplicationDbContext dbContext, IMapper mapper) : IReadOnlyRepository<TEntity> where TEntity : class , IEntity
+    internal class ReadOnlyRepository<TEntity>(ApplicationDbContext dbContext, IMapper mapper) : IReadOnlyRepository<TEntity> where TEntity : class, IEntity
     {
         private readonly ApplicationDbContext _dbContext = dbContext;
         private readonly IMapper _mapper = mapper;

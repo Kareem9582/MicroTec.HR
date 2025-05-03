@@ -6,7 +6,7 @@ namespace MicroTec.Hr.BackendApi.Shared.Extensions
     {
         public static WebApplication SetupMiddleWare(this WebApplication app)
         {
-            
+
             app.UseMiddleware<CorrelationIdMiddleware>();
             app.UseMiddleware<LoggingMiddleware>();
             app.UseMiddleware<ExceptionMiddleware>();

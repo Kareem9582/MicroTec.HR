@@ -6,7 +6,7 @@ using MicroTec.Hr.Domain.Employees;
 
 namespace MicroTec.Hr.Services.Employees.DeleteEmployee
 {
-    public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeCommand , int>
+    public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -23,7 +23,7 @@ namespace MicroTec.Hr.Services.Employees.DeleteEmployee
         public async Task<int> Handle(DeleteEmployeeCommand request, CancellationToken cancellationToken)
         {
             var repository = _unitOfWork.Repository<EmployeeEntity>();
-            var employee = await repository.GetByIdAsync(request.EmployeeId,request.UserId, cancellationToken) ?? 
+            var employee = await repository.GetByIdAsync(request.EmployeeId, request.UserId, cancellationToken) ??
                 throw new RecordNotFoundException(nameof(EmployeeEntity), request.EmployeeId);
             employee.MarkForDeletion(request.UserId);
             repository.Delete(employee);

@@ -12,7 +12,7 @@ namespace MicroTec.Hr.Infrastructure.Employees
             builder.AddBaseEntityConfiguration();
 
             builder.ToTable("Employees");
-           
+
             builder.Property(e => e.EmployeeCode)
                 .IsRequired()
                 .HasMaxLength(9);

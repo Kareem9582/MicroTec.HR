@@ -9,7 +9,7 @@ namespace MicroTec.Hr.BackendApi.Features.Employees.UpdateEmployee
         {
             CreateMap<UpdateEmployeeRequest, UpdateEmployeeCommand>()
             .ForMember(dest => dest.UserId, opt => opt.Ignore())
-            .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(x=>x.Id));
+            .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(x => x.Id));
         }
     }
 }

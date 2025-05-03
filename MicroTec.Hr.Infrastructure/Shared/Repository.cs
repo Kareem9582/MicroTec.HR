@@ -7,16 +7,16 @@ using MicroTec.Hr.Infrastructure.Contexts;
 
 namespace MicroTec.Hr.Infrastructure.Shared
 {
-    internal class Repository<TEntity>(ApplicationDbContext dbContext , IMapper mapper) : IRepository<TEntity> where TEntity :  BaseEntity 
+    internal class Repository<TEntity>(ApplicationDbContext dbContext, IMapper mapper) : IRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly ApplicationDbContext _dbContext = dbContext;
         private readonly IMapper _mapper = mapper;
         public async Task<TEntity?> GetByIdAsync(Guid id, Guid userId, CancellationToken cancellationToken)
             => await _dbContext.Set<TEntity>()
-        .FirstOrDefaultAsync(e => e.Id == id && e.CreatedBy == userId && e.IsDeleted == false , cancellationToken);
+        .FirstOrDefaultAsync(e => e.Id == id && e.CreatedBy == userId && e.IsDeleted == false, cancellationToken);
 
-        public async Task AddAsync(TEntity entity , CancellationToken cancellationToken)
-            => await _dbContext.Set<TEntity>().AddAsync(entity , cancellationToken);
+        public async Task AddAsync(TEntity entity, CancellationToken cancellationToken)
+            => await _dbContext.Set<TEntity>().AddAsync(entity, cancellationToken);
 
         public void Update(TEntity entity)
             => _dbContext.Set<TEntity>().Update(entity);
@@ -37,7 +37,7 @@ namespace MicroTec.Hr.Infrastructure.Shared
 
             if (applySearch is not null)
                 query = applySearch(query, searchTerm);
-            
+
             var totalCount = await query.CountAsync(cancellationToken);
             var items = await query
                 .Skip((pageNumber - 1) * pageSize)
@@ -52,7 +52,7 @@ namespace MicroTec.Hr.Infrastructure.Shared
             };
         }
 
-        public async Task<TModel?> GetByIdReadOnlyAsync<TModel>(Guid id, Guid userId, CancellationToken cancellationToken) where TModel : BaseModel 
+        public async Task<TModel?> GetByIdReadOnlyAsync<TModel>(Guid id, Guid userId, CancellationToken cancellationToken) where TModel : BaseModel
             => await _dbContext.Set<TEntity>()
                     .AsNoTracking()
                     .Where(x => x.Id == id && x.CreatedBy == userId)

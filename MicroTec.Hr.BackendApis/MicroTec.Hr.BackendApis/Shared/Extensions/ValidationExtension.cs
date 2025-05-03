@@ -10,7 +10,7 @@ namespace MicroTec.Hr.BackendApi.Shared.Extensions
         {
             // DB
             services.AddFluentValidationAutoValidation(); // automatic model validation
-            services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()); 
+            services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = context =>

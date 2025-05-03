@@ -63,10 +63,10 @@ namespace MicroTec.Hr.BackendApi.Shared.Middleware
                 $"Controller : {controllerName} \n" +
                 $"Action Name : {actionName} \n" +
                 $"User Details : {userId} \n" +
-                $"Path : {context.Request.Path} \n"+
-                $"Request Body {requestBody} \n"+
-                $"Response Status Code {context.Response.StatusCode} \n"+
-                $"Duration {stopwatch.ElapsedMilliseconds} \n"+
+                $"Path : {context.Request.Path} \n" +
+                $"Request Body {requestBody} \n" +
+                $"Response Status Code {context.Response.StatusCode} \n" +
+                $"Duration {stopwatch.ElapsedMilliseconds} \n" +
                 $"Response Body {LoggingHelper.MaskSensitiveFields(responseBodyText)}");
 
             _logger.LogInformation("\n\n\n"); //Spacer

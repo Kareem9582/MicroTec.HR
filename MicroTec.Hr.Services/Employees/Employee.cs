@@ -2,7 +2,7 @@
 
 namespace MicroTec.Hr.Services.Employees
 {
-    public record class Employee: BaseModel
+    public record class Employee : BaseModel
     {
         public string EmployeeCode { get; init; } = string.Empty;
         public string FullName { get; init; } = string.Empty;

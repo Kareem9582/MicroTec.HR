@@ -26,7 +26,7 @@ namespace MicroTec.Hr.Infrastructure.Configurations
             builder.HasOne(c => c.Employee)
                 .WithMany(e => e.Custodies)
                 .HasForeignKey(c => c.EmployeeId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

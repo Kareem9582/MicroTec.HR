@@ -13,7 +13,7 @@ namespace MicroTec.Hr.Infrastructure.Extensions
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
-            
+
             services.AddHealthChecks()
                .AddSqlServer(connectionString);
 

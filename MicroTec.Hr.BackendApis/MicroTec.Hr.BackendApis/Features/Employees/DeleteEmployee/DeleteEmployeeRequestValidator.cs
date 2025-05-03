@@ -7,7 +7,7 @@ namespace MicroTec.Hr.BackendApi.Features.Employees.DeleteEmployee
     {
         public DeleteEmployeeRequestValidator()
         {
-            RuleFor(x => x.Id).IdRules();    
+            RuleFor(x => x.Id).IdRules();
         }
     }
 }
