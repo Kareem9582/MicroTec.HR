@@ -9,7 +9,7 @@ namespace MicroTec.Hr.BackendApi.Tests.Shared.Factories.Employee
             EmployeeCode: "EMP-12345",  // 9 chars
             FullName: "John Doe",
             BirthDate: DateTimeOffset.Now.AddYears(-25),  // Age = 25
-            GenderId: Guid.NewGuid(),
+            Gender: Domain.Enums.Gender.Male,
             NationalityId: Guid.NewGuid()
         );
 
@@ -25,9 +25,6 @@ namespace MicroTec.Hr.BackendApi.Tests.Shared.Factories.Employee
 
         public static CreateEmployeeRequest InvalidBirthDateTooYoung() =>
             ValidRequest() with { BirthDate = DateTimeOffset.Now.AddYears(-10) };  // Age = 10 (MIN_AGE=18)
-
-        public static CreateEmployeeRequest MissingGenderId() =>
-            ValidRequest() with { GenderId = Guid.Empty };  // Empty GUID
 
         public static CreateEmployeeRequest MissingNationalityId() =>
             ValidRequest() with { NationalityId = Guid.Empty };  // Empty GUID

@@ -9,7 +9,7 @@ namespace MicroTec.Hr.Services.Employees.CreateEmployee
             RuleFor(x => x.EmployeeCode).EmployeeCodeRules();
             RuleFor(x => x.FullName).FullNameRules();
             RuleFor(x => x.BirthDate).BirthDateRules();
-            RuleFor(x => x.GenderId).GenderRules();
+            RuleFor(x => x.Gender).GenderRules();
             RuleFor(x => x.NationalityId).NationalityRules();
         }
     }

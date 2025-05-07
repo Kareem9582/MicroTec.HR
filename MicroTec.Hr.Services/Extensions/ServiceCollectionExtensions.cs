@@ -13,7 +13,13 @@ namespace MicroTec.Hr.Services.Extensions
             services.AddApplicationDbContext(connectionString);
             services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
             // Register other services in the Application Layer
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend",
+                    policy => policy.WithOrigins("http://localhost:4200")
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod());
+            });
 
             return services;
         }

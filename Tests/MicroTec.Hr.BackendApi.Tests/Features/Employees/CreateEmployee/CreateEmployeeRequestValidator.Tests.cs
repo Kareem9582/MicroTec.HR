@@ -57,16 +57,6 @@ namespace MicroTec.Hr.BackendApi.Tests.Features.Employees.CreateEmployee
                   .WithErrorMessage($"Employee must be between {EmployeeConstants.MIN_AGE} and {EmployeeConstants.MAX_AGE} years old.");
         }
 
-        // --- GENDER ID Validation Tests ---
-        [Fact]
-        public void MissingGenderId_ShouldFailValidation()
-        {
-            var request = EmployeeFactory.MissingGenderId();
-            var result = _validator.TestValidate(request);
-            result.ShouldHaveValidationErrorFor(x => x.GenderId)
-                  .WithErrorMessage("Gender is required.");
-        }
-
         [Fact]
         public void MissingNationalityId_ShouldFailValidation()
         {

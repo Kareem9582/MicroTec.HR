@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MicroTec.Hr.Domain.Employees;
+using MicroTec.Hr.Domain.Enums;
 using MicroTec.Hr.Infrastructure.Shared;
 
 namespace MicroTec.Hr.Services.Employees.CreateEmployee
@@ -32,9 +33,9 @@ namespace MicroTec.Hr.Services.Employees.CreateEmployee
             return rule.RequiredRule("EmployeeId");
         }
 
-        public static IRuleBuilderOptions<T, Guid> GenderRules<T>(this IRuleBuilder<T, Guid> rule)
+        public static IRuleBuilderOptions<T, Gender> GenderRules<T>(this IRuleBuilder<T, Gender> rule)
         {
-            return rule.RequiredRule("Gender");
+            return rule.IsInEnum().WithMessage("Invalid gender value.");
         }
 
         public static IRuleBuilderOptions<T, Guid> NationalityRules<T>(this IRuleBuilder<T, Guid> rule)

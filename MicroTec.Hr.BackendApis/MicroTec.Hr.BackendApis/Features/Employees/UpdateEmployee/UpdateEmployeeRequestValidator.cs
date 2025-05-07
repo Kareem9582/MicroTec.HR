@@ -9,7 +9,7 @@ namespace MicroTec.Hr.BackendApi.Features.Employees.UpdateEmployee
         {
             RuleFor(x => x.FullName).FullNameRules();
             RuleFor(x => x.BirthDate).BirthDateRules();
-            RuleFor(x => x.GenderId).GenderRules();
+            RuleFor(x => x.Gender).GenderRules();
             RuleFor(x => x.NationalityId).NationalityRules();
         }
     }

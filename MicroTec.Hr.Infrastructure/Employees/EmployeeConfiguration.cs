@@ -27,8 +27,8 @@ namespace MicroTec.Hr.Infrastructure.Employees
             builder.Property(e => e.NationalityId)
                 .IsRequired();
 
-            builder.Property(e => e.GenderId)
-                .IsRequired();
+            builder.Property(e => e.Gender)
+                .HasConversion<string>(); 
 
             builder.AddIsDeletedFilter();
 

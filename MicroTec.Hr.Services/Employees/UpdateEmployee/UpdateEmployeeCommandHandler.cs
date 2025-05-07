@@ -16,7 +16,7 @@ namespace MicroTec.Hr.Services.Employees.UpdateEmployee
                throw new RecordNotFoundException(nameof(EmployeeEntity), request.EmployeeId);
 
             // Map updated fields
-            employee.Update(request.FullName, request.BirthDate, request.GenderId, request.NationalityId, request.UserId);
+            employee.Update(request.FullName, request.BirthDate, request.Gender, request.NationalityId, request.UserId);
 
             try
             {

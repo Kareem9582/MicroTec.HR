@@ -1,5 +1,4 @@
 ﻿using MicroTec.Hr.Domain.Contract;
-using System.ComponentModel.DataAnnotations;
 
 namespace MicroTec.Hr.Domain.Shared
 {
@@ -7,7 +6,7 @@ namespace MicroTec.Hr.Domain.Shared
     {
         public Guid Id { get; protected set; } = Guid.NewGuid(); // Automatically assigned at creation
 
-        [Timestamp]
+        //[Timestamp] 
         public byte[] RowVersion { get; set; } = new byte[8]; // For concurrency control
 
         public bool IsDeleted { get; set; }

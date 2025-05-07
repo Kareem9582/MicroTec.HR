@@ -22,8 +22,8 @@ namespace MicroTec.Hr.Domain.Employees
             if (age < EmployeeConstants.MIN_AGE || age > EmployeeConstants.MAX_AGE)
                 throw new DomainValidationException("Employee must be between 18 and 65 years old.");
 
-            if (employee.GenderId == Guid.Empty || employee.NationalityId == Guid.Empty)
-                throw new DomainValidationException("Gender and Nationality are required.");
+            if (employee.NationalityId == Guid.Empty)
+                throw new DomainValidationException("Nationality is required.");
         }
     }
 }
