@@ -27,6 +27,7 @@ namespace MicroTec.Hr.Services.Employees.GetAllEmployees
                         e.EmployeeCode.ToString().Contains(term) ||
                         e.FullName.ToLower().Contains(term) ||
                         e.Nationality.Name.ToLower().Contains(term) ||
+                        e.Gender.ToString().Contains(term) ||
                         EF.Functions.Like(e.BirthDate.ToString(), $"%{term}%"));
                 },
                 cancellationToken);
