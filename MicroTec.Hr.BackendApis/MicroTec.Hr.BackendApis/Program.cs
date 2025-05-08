@@ -1,4 +1,5 @@
 using MicroTec.Hr.BackendApi.Shared.Extensions;
+using MicroTec.Hr.Infrastructure.Shared;
 using MicroTec.Hr.Services.Extensions;
 
 namespace MicroTec.Hr.BackendApi
@@ -20,7 +21,7 @@ namespace MicroTec.Hr.BackendApi
 
             app.SetupMiddleWare();
             app.SetupApplicationBuilder();
-
+            ServiceLocator.Provider = app.Services;
             app.Run();
         }
     }

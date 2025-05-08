@@ -6,8 +6,8 @@ namespace MicroTec.Hr.Domain.Employees
     {
         public static void Validate(EmployeeEntity employee)
         {
-            if (string.IsNullOrWhiteSpace(employee.EmployeeCode) || employee.EmployeeCode.Length != 9)
-                throw new DomainValidationException("Employee code must be 9 characters.");
+            if (employee.EmployeeCode <= 0)
+                throw new DomainValidationException("Employee code must Larger Than 0.");
 
             if (string.IsNullOrWhiteSpace(employee.FullName))
                 throw new DomainValidationException("Full name is required.");

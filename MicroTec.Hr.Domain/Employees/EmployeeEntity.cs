@@ -7,7 +7,7 @@ namespace MicroTec.Hr.Domain.Employees
     public class EmployeeEntity : BaseEntity
     {
         // Props
-        public string EmployeeCode { get; private set; } = string.Empty;
+        public int EmployeeCode { get; private set; }
         public string FullName { get; private set; } = string.Empty;
         public DateTimeOffset BirthDate { get; private set; }
         public Guid NationalityId { get; private set; }

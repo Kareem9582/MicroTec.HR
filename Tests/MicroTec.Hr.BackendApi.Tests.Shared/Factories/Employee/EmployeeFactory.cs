@@ -6,16 +6,11 @@ namespace MicroTec.Hr.BackendApi.Tests.Shared.Factories.Employee
     {
         // Valid request with all fields correctly populated
         public static CreateEmployeeRequest ValidRequest() => new(
-            EmployeeCode: "EMP-12345",  // 9 chars
             FullName: "John Doe",
             BirthDate: DateTimeOffset.Now.AddYears(-25),  // Age = 25
             Gender: Domain.Enums.Gender.Male,
-            NationalityId: Guid.NewGuid()
+            Nationality: Guid.NewGuid()
         );
-
-        // Invalid requests targeting specific validation rules
-        public static CreateEmployeeRequest InvalidEmployeeCode() =>
-            ValidRequest() with { EmployeeCode = "TOO-LONG-CODE" };  // Violates 9-char rule
 
         public static CreateEmployeeRequest InvalidFullName() =>
             ValidRequest() with { FullName = "" };  // Empty name
@@ -27,6 +22,6 @@ namespace MicroTec.Hr.BackendApi.Tests.Shared.Factories.Employee
             ValidRequest() with { BirthDate = DateTimeOffset.Now.AddYears(-10) };  // Age = 10 (MIN_AGE=18)
 
         public static CreateEmployeeRequest MissingNationalityId() =>
-            ValidRequest() with { NationalityId = Guid.Empty };  // Empty GUID
+            ValidRequest() with { Nationality = Guid.Empty };  // Empty GUID
     }
 }

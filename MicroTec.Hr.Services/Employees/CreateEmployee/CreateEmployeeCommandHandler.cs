@@ -2,6 +2,7 @@
 using MediatR;
 using MicroTec.Hr.Domain.Contract;
 using MicroTec.Hr.Domain.Employees;
+using MicroTec.Hr.Infrastructure.Extensions;
 
 namespace MicroTec.Hr.Services.Employees.CreateEmployee
 {
@@ -9,20 +10,22 @@ namespace MicroTec.Hr.Services.Employees.CreateEmployee
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-
-        public CreateEmployeeCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IServiceProvider _serviceProvider;
+        public CreateEmployeeCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IServiceProvider serviceProvider)
         {
             ArgumentNullException.ThrowIfNull(unitOfWork);
             ArgumentNullException.ThrowIfNull(mapper);
 
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _serviceProvider = serviceProvider;
         }
 
         public async Task<Guid> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
         {
+            var repository = _unitOfWork.Repository<EmployeeEntity>();
+            request.EmployeeCode = await repository.GetNextEmployeeCode(_serviceProvider);
             var employee = _mapper.Map<EmployeeEntity>(request);
-
             employee = EmployeeEntity.Create(employee, request.UserId);
 
             await _unitOfWork.Repository<EmployeeEntity>()

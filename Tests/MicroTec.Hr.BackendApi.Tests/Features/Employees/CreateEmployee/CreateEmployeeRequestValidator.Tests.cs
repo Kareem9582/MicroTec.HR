@@ -18,16 +18,6 @@ namespace MicroTec.Hr.BackendApi.Tests.Features.Employees.CreateEmployee
             result.ShouldNotHaveAnyValidationErrors();
         }
 
-        // --- Employee Code Tests ---
-        [Fact]
-        public void InvalidEmployeeCode_ShouldFailValidation()
-        {
-            var request = EmployeeFactory.InvalidEmployeeCode();
-            var result = _validator.TestValidate(request);
-            result.ShouldHaveValidationErrorFor(x => x.EmployeeCode)
-                  .WithErrorMessage("Employee code must be 9 digits.");
-        }
-
         // --- Full Name Tests ---
         [Fact]
         public void EmptyFullName_ShouldFailValidation()
@@ -62,7 +52,7 @@ namespace MicroTec.Hr.BackendApi.Tests.Features.Employees.CreateEmployee
         {
             var request = EmployeeFactory.MissingNationalityId();
             var result = _validator.TestValidate(request);
-            result.ShouldHaveValidationErrorFor(x => x.NationalityId)
+            result.ShouldHaveValidationErrorFor(x => x.Nationality)
                   .WithErrorMessage("Nationality is required.");
         }
     }

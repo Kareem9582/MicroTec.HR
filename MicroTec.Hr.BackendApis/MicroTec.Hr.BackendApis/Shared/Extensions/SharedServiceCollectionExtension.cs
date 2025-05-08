@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 namespace MicroTec.Hr.BackendApi.Shared.Extensions
 {
@@ -6,7 +7,12 @@ namespace MicroTec.Hr.BackendApi.Shared.Extensions
     {
         public static IServiceCollection SetupApplicationSharedServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
             services.AddApiVersioning(options =>
             {
                 options.AssumeDefaultVersionWhenUnspecified = true;

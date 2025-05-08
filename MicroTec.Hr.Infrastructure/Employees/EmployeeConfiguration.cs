@@ -14,8 +14,7 @@ namespace MicroTec.Hr.Infrastructure.Employees
             builder.ToTable("Employees");
 
             builder.Property(e => e.EmployeeCode)
-                .IsRequired()
-                .HasMaxLength(9);
+                .IsRequired();
 
             builder.Property(e => e.FullName)
                 .IsRequired()

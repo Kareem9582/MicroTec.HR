@@ -5,7 +5,7 @@ namespace MicroTec.Hr.Services.Employees.CreateEmployee
 {
     public record class CreateEmployeeCommand : IRequest<Guid>
     {
-        public string EmployeeCode { get; init; } = default!;
+        public int EmployeeCode { get; set; }
         public string FullName { get; init; } = default!;
         public DateTimeOffset BirthDate { get; init; }
         public Gender Gender { get; init; }

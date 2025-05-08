@@ -39,7 +39,7 @@ namespace MicroTec.Hr.BackendApi.Integration.Tests.Controllers
             // Assert - Database
             var savedEmployee = await _dbContext.Employees.FindAsync(employeeId);
             savedEmployee.Should().NotBeNull();
-            savedEmployee!.EmployeeCode.Should().Be(request.EmployeeCode);
+            savedEmployee!.EmployeeCode.Should().Be(1);
         }
 
         [Fact]
