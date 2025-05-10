@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MicroTec.Hr.Domain.Employees;
-using MicroTec.Hr.Domain.Entities;
+using MicroTec.Hr.Domain.Features.Custodies;
+using MicroTec.Hr.Domain.Features.Employees;
+using MicroTec.Hr.Domain.Features.Nationality;
 using MicroTec.Hr.Infrastructure.Extensions;
 
 namespace MicroTec.Hr.Infrastructure.Contexts
@@ -8,7 +9,7 @@ namespace MicroTec.Hr.Infrastructure.Contexts
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {
         public DbSet<EmployeeEntity> Employees { get; set; }
-        public DbSet<Custody> Custodies { get; set; }
+        public DbSet<CustodyEntity> Custodies { get; set; }
         public DbSet<NationalityEntity> Nationalities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

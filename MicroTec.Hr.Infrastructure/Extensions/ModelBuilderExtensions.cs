@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MicroTec.Hr.Domain.Entities;
+using MicroTec.Hr.Domain.Features.Nationality;
 
 namespace MicroTec.Hr.Infrastructure.Extensions
 {

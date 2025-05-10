@@ -1,6 +1,6 @@
 ﻿using MicroTec.Hr.Domain.Custom_Exceptions;
 
-namespace MicroTec.Hr.Domain.Employees
+namespace MicroTec.Hr.Domain.Features.Employees
 {
     public static class EmployeeValidator
     {

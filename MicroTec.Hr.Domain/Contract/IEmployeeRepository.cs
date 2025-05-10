@@ -1,4 +1,4 @@
-﻿using MicroTec.Hr.Domain.Employees;
+﻿using MicroTec.Hr.Domain.Features.Employees;
 
 namespace MicroTec.Hr.Domain.Contract
 {

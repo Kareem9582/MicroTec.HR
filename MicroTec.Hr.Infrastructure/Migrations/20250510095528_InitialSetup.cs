@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -7,7 +8,7 @@
 namespace MicroTec.Hr.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitalDataBaseCreate : Migration
+    public partial class InitialSetup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,13 +32,17 @@ namespace MicroTec.Hr.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EmployeeCode = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmployeeCode = table.Column<int>(type: "int", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    BirthDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     NationalityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    GenderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,11 +60,18 @@ namespace MicroTec.Hr.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    AssignedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CustodyNumber = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustodyName = table.Column<string>(type: "nvarchar(750)", maxLength: 750, nullable: false),
+                    CustodyDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AssignDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -86,6 +98,12 @@ namespace MicroTec.Hr.Infrastructure.Migrations
                 name: "IX_Custodies_EmployeeId",
                 table: "Custodies",
                 column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Custodies_IsDeleted",
+                table: "Custodies",
+                column: "IsDeleted",
+                filter: "[IsDeleted] = 0");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_IsDeleted",

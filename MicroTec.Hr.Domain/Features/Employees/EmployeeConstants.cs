@@ -1,4 +1,4 @@
-﻿namespace MicroTec.Hr.Domain.Employees
+﻿namespace MicroTec.Hr.Domain.Features.Employees
 {
     public static class EmployeeConstants
     {

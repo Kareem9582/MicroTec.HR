@@ -1,5 +1,6 @@
 ﻿using MicroTec.Hr.Domain.Enums;
 using MicroTec.Hr.Domain.Shared;
+using MicroTec.Hr.Services.Custodies;
 
 namespace MicroTec.Hr.Services.Employees
 {
@@ -12,6 +13,7 @@ namespace MicroTec.Hr.Services.Employees
         public string Nationality { get; init; } = default!;
         public Guid NationalityId { get; init; } = default!;
         public Gender Gender { get;init; }
+        public IEnumerable<Custody> Custodies { get; init; } = [];
         public int Age =>
             DateTimeOffset.UtcNow.Year - BirthDate.Year -
             (BirthDate.Date > DateTimeOffset.UtcNow.AddYears(-(DateTimeOffset.UtcNow.Year - BirthDate.Year)) ? 1 : 0);

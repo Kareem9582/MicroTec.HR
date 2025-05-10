@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MicroTec.Hr.Domain.Contract;
-using MicroTec.Hr.Domain.Employees;
+using MicroTec.Hr.Domain.Features.Employees;
 using MicroTec.Hr.Infrastructure.Extensions;
 
 namespace MicroTec.Hr.Services.Employees.CreateEmployee

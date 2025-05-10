@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MicroTec.Hr.Domain.Contract;
 using MicroTec.Hr.Domain.Custom_Exceptions;
-using MicroTec.Hr.Domain.Employees;
+using MicroTec.Hr.Domain.Features.Employees;
 
 namespace MicroTec.Hr.Services.Employees.UpdateEmployee
 {

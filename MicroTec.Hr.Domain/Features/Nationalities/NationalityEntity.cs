@@ -1,6 +1,6 @@
 ﻿using MicroTec.Hr.Domain.Shared;
 
-namespace MicroTec.Hr.Domain.Entities
+namespace MicroTec.Hr.Domain.Features.Nationality
 {
     public class NationalityEntity : BaseReadOnlyEntity
     {

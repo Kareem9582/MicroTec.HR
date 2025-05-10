@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MicroTec.Hr.Domain.Contract;
 using MicroTec.Hr.Infrastructure.Contexts;
-using MicroTec.Hr.Infrastructure.Employees;
+using MicroTec.Hr.Infrastructure.Features.Employees;
 using MicroTec.Hr.Infrastructure.Shared;
 
 namespace MicroTec.Hr.Infrastructure.Extensions

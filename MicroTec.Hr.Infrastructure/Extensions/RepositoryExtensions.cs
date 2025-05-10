@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MicroTec.Hr.Domain.Contract;
-using MicroTec.Hr.Domain.Employees;
+using MicroTec.Hr.Domain.Features.Custodies;
+using MicroTec.Hr.Domain.Features.Employees;
 using MicroTec.Hr.Infrastructure.Contexts;
 
 namespace MicroTec.Hr.Infrastructure.Extensions

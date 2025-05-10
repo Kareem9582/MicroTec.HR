@@ -9,6 +9,7 @@ namespace MicroTec.Hr.BackendApi.Features.Employees.CreateEmployee
         {
             CreateMap<CreateEmployeeRequest, CreateEmployeeCommand>()
             .ForMember(dest => dest.NationalityId, opt => opt.MapFrom(x=>x.Nationality))
+            .ForMember(dest => dest.Custodies, opt => opt.MapFrom(x=>x.Custodies))
             .ForMember(dest => dest.UserId, opt => opt.Ignore());
         }
     }

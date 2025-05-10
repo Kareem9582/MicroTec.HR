@@ -1,8 +1,9 @@
-﻿using MicroTec.Hr.Domain.Entities;
-using MicroTec.Hr.Domain.Enums;
+﻿using MicroTec.Hr.Domain.Enums;
+using MicroTec.Hr.Domain.Features.Custodies;
+using MicroTec.Hr.Domain.Features.Nationality;
 using MicroTec.Hr.Domain.Shared;
 
-namespace MicroTec.Hr.Domain.Employees
+namespace MicroTec.Hr.Domain.Features.Employees
 {
     public class EmployeeEntity : BaseEntity
     {
@@ -12,7 +13,7 @@ namespace MicroTec.Hr.Domain.Employees
         public DateTimeOffset BirthDate { get; private set; }
         public Guid NationalityId { get; private set; }
         public Gender Gender { get; private set; }
-        public List<Custody> Custodies { get; private set; } = [];
+        public List<CustodyEntity> Custodies { get; private set; } = [];
         public NationalityEntity Nationality { get; private set; } = default!;
 
         public static EmployeeEntity Create(EmployeeEntity employee, Guid createdBy)

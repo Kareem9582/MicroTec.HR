@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using AutoMapper;
 using MicroTec.Hr.Domain.Contract;
-using MicroTec.Hr.Domain.Entities;
 using MicroTec.Hr.Domain.Shared;
+using MicroTec.Hr.Domain.Features.Nationality;
 
 namespace MicroTec.Hr.Services.Nationalities.GetNationalitiesList
 {

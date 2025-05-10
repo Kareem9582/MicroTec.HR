@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MicroTec.Hr.Domain.Employees;
+using MicroTec.Hr.Domain.Features.Employees;
 using MicroTec.Hr.Infrastructure.Extensions;
 
-namespace MicroTec.Hr.Infrastructure.Employees
+namespace MicroTec.Hr.Infrastructure.Features.Employees
 {
     public class EmployeeConfiguration : IEntityTypeConfiguration<EmployeeEntity>
     {

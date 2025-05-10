@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using MicroTec.Hr.Domain.Employees;
+using MicroTec.Hr.Domain.Features.Employees;
 using Serilog;
 
-namespace MicroTec.Hr.Infrastructure.Employees
+namespace MicroTec.Hr.Infrastructure.Features.Employees
 {
     public class EmployeeUpdatedEventHandler : INotificationHandler<EmployeeUpdatedEvent>
     {

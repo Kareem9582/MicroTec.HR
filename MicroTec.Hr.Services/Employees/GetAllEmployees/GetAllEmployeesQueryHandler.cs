@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MicroTec.Hr.Domain.Contract;
-using MicroTec.Hr.Domain.Employees;
+using MicroTec.Hr.Domain.Features.Employees;
 using MicroTec.Hr.Domain.Shared;
 
 namespace MicroTec.Hr.Services.Employees.GetAllEmployees

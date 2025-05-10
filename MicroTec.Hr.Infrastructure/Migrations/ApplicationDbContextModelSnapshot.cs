@@ -22,7 +22,65 @@ namespace MicroTec.Hr.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MicroTec.Hr.Domain.Employees.EmployeeEntity", b =>
+            modelBuilder.Entity("MicroTec.Hr.Domain.Features.Custodies.CustodyEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("AssignDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CustodyDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustodyName")
+                        .IsRequired()
+                        .HasMaxLength(750)
+                        .HasColumnType("nvarchar(750)");
+
+                    b.Property<int>("CustodyNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustodyNumber"));
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("IsDeleted")
+                        .HasFilter("[IsDeleted] = 0");
+
+                    b.ToTable("Custodies", (string)null);
+                });
+
+            modelBuilder.Entity("MicroTec.Hr.Domain.Features.Employees.EmployeeEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,50 +135,7 @@ namespace MicroTec.Hr.Infrastructure.Migrations
                     b.ToTable("Employees", (string)null);
                 });
 
-            modelBuilder.Entity("MicroTec.Hr.Domain.Entities.Custody", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("AssignedDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("EmployeeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("Custodies", (string)null);
-                });
-
-            modelBuilder.Entity("MicroTec.Hr.Domain.Entities.NationalityEntity", b =>
+            modelBuilder.Entity("MicroTec.Hr.Domain.Features.Nationality.NationalityEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,20 +184,9 @@ namespace MicroTec.Hr.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MicroTec.Hr.Domain.Employees.EmployeeEntity", b =>
+            modelBuilder.Entity("MicroTec.Hr.Domain.Features.Custodies.CustodyEntity", b =>
                 {
-                    b.HasOne("MicroTec.Hr.Domain.Entities.NationalityEntity", "Nationality")
-                        .WithMany()
-                        .HasForeignKey("NationalityId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Nationality");
-                });
-
-            modelBuilder.Entity("MicroTec.Hr.Domain.Entities.Custody", b =>
-                {
-                    b.HasOne("MicroTec.Hr.Domain.Employees.EmployeeEntity", "Employee")
+                    b.HasOne("MicroTec.Hr.Domain.Features.Employees.EmployeeEntity", "Employee")
                         .WithMany("Custodies")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -191,7 +195,18 @@ namespace MicroTec.Hr.Infrastructure.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("MicroTec.Hr.Domain.Employees.EmployeeEntity", b =>
+            modelBuilder.Entity("MicroTec.Hr.Domain.Features.Employees.EmployeeEntity", b =>
+                {
+                    b.HasOne("MicroTec.Hr.Domain.Features.Nationality.NationalityEntity", "Nationality")
+                        .WithMany()
+                        .HasForeignKey("NationalityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Nationality");
+                });
+
+            modelBuilder.Entity("MicroTec.Hr.Domain.Features.Employees.EmployeeEntity", b =>
                 {
                     b.Navigation("Custodies");
                 });

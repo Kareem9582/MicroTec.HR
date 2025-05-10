@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using MicroTec.Hr.Domain.Employees;
 using MicroTec.Hr.Domain.Enums;
+using MicroTec.Hr.Domain.Features.Employees;
 using MicroTec.Hr.Infrastructure.Shared;
 
 namespace MicroTec.Hr.Services.Employees.CreateEmployee

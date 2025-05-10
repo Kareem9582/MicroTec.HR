@@ -1,7 +1,7 @@
 using FluentValidation.TestHelper;
 using MicroTec.Hr.BackendApi.Features.Employees.CreateEmployee;
 using MicroTec.Hr.BackendApi.Tests.Shared.Factories.Employee;
-using MicroTec.Hr.Domain.Employees;
+using MicroTec.Hr.Domain.Features.Employees;
 
 namespace MicroTec.Hr.BackendApi.Tests.Features.Employees.CreateEmployee
 {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using MicroTec.Hr.Domain.Entities;
+using MicroTec.Hr.Domain.Features.Nationality;
 
-namespace MicroTec.Hr.Infrastructure.Configurations
+namespace MicroTec.Hr.Infrastructure.Features.Nationalities
 {
     public class NationalityConfiguration : IEntityTypeConfiguration<NationalityEntity>
     {
