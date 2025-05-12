@@ -13,5 +13,12 @@ namespace MicroTec.Hr.Domain.Features.Custodies
         public DateTimeOffset AssignDate { get; set; }
         public Guid EmployeeId { get; set; }
         public EmployeeEntity Employee { get; set; } = null!;
+
+        public void MarkForDeletion(Guid userId)
+        {
+
+            IsDeleted = true; 
+            SetUpdated(userId);
+        }
     }
 }

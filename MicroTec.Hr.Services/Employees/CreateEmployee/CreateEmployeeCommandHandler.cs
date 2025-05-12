@@ -28,7 +28,7 @@ namespace MicroTec.Hr.Services.Employees.CreateEmployee
             var employee = _mapper.Map<EmployeeEntity>(request);
             employee = EmployeeEntity.Create(employee, request.UserId);
 
-            await _unitOfWork.Repository<EmployeeEntity>()
+            await repository
                     .AddAsync(employee, cancellationToken);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);

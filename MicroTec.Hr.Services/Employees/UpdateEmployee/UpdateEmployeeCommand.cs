@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MicroTec.Hr.Domain.Enums;
+using MicroTec.Hr.Services.Custodies;
 
 namespace MicroTec.Hr.Services.Employees.UpdateEmployee
 {
@@ -11,5 +12,6 @@ namespace MicroTec.Hr.Services.Employees.UpdateEmployee
         public Gender Gender { get; init; }
         public Guid NationalityId { get; init; }
         public Guid UserId { get; init; }
+        public IEnumerable<Custody> Custodies { get; init; } = [];
     }
 }

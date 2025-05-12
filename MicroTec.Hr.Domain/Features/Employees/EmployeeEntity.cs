@@ -27,12 +27,13 @@ namespace MicroTec.Hr.Domain.Features.Employees
 
             return employee;
         }
-        public void Update(string fullName, DateTimeOffset birthDate, Gender gender, Guid nationalityId, Guid updatedBy)
+        public void Update(string fullName, DateTimeOffset birthDate, Gender gender, Guid nationalityId, Guid updatedBy, List<CustodyEntity> custodies)
         {
             FullName = fullName;
             BirthDate = birthDate;
             Gender = gender;
             NationalityId = nationalityId;
+            Custodies = custodies;
 
             SetUpdated(updatedBy);
 

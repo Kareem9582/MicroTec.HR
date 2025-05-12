@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MicroTec.Hr.Infrastructure.Extensions;
 using MicroTec.Hr.Domain.Features.Custodies;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MicroTec.Hr.Infrastructure.Features.Custodies
 {
@@ -24,7 +25,9 @@ namespace MicroTec.Hr.Infrastructure.Features.Custodies
 
             builder.Property(c => c.CustodyNumber)
                 .ValueGeneratedOnAdd()
-                .IsRequired();
+                .IsRequired()
+                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+                
 
             builder.Property(c => c.AssignDate)
                 .IsRequired();
@@ -40,7 +43,7 @@ namespace MicroTec.Hr.Infrastructure.Features.Custodies
             builder.HasOne(c => c.Employee)
                 .WithMany(e => e.Custodies)
                 .HasForeignKey(c => c.EmployeeId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
