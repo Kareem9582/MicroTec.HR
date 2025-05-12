@@ -22,6 +22,8 @@ namespace MicroTec.Hr.Services.Employees.UpdateEmployee
                    throw new RecordNotFoundException(nameof(EmployeeEntity), request.EmployeeId);
 
                 employee.Custodies.ForEach(x => x.MarkForDeletion(request.UserId));
+                EmployeeRepository.Update(employee); // EF tracks changes and the RowVersion
+                await unitOfWork.SaveChangesAsync(cancellationToken);
 
                 var custodies = mapper.Map<List<CustodyEntity>>(request.Custodies);
                 // Map updated fields
