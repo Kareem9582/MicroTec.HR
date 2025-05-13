@@ -1,4 +1,5 @@
-﻿using MicroTec.Hr.BackendApi.Features.Employees.CreateEmployee;
+﻿using MicroTec.Hr.BackendApi.Features.Employees;
+using MicroTec.Hr.BackendApi.Features.Employees.CreateEmployee;
 
 namespace MicroTec.Hr.BackendApi.Tests.Shared.Factories.Employee
 {
@@ -9,7 +10,8 @@ namespace MicroTec.Hr.BackendApi.Tests.Shared.Factories.Employee
             FullName: "John Doe",
             BirthDate: DateTimeOffset.Now.AddYears(-25),  // Age = 25
             Gender: Domain.Enums.Gender.Male,
-            Nationality: Guid.NewGuid()
+            Nationality: Guid.NewGuid(),
+            Custodies:  new List<CustodyRequest>()
         );
 
         public static CreateEmployeeRequest InvalidFullName() =>
