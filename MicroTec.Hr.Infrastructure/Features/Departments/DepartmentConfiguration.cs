@@ -13,10 +13,7 @@ namespace MicroTec.Hr.Infrastructure.Features.Departments
             builder.AddBaseEntityConfiguration();
 
          
-            builder.Property(n => n.Code)
-              .IsRequired()
-              .HasMaxLength(5);   
-
+         
             builder.Property(n => n.Name)
                 .IsRequired()
                 .HasMaxLength(500);

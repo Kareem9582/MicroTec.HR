@@ -1,15 +1,16 @@
 ﻿using MediatR;
-using MicroTec.Hr.Domain.Features.Employees;
+using MicroTec.Hr.Domain.Shared;
+using MicroTec.Hr.Domain.Shared.DomainEvents;
 using Serilog;
 
 namespace MicroTec.Hr.Infrastructure.Features.Employees
 {
-    public class EmployeeDeletedEventHandler : INotificationHandler<EmployeeDeletedEvent>
+    public class EmployeeDeletedEventHandler : INotificationHandler<DeleteEvent>
     {
-        public Task Handle(EmployeeDeletedEvent notification, CancellationToken cancellationToken)
+        public Task Handle(DeleteEvent notification, CancellationToken cancellationToken)
         {
             Log.Information("📌 Employee Deleted Event triggered for EmployeeId: {EmployeeId} at {OccurredOn}",
-                notification.EmployeeId, notification.OccurredOn);
+                notification.Id, notification.OccurredOn);
 
             // You can also enrich with more data if needed
 

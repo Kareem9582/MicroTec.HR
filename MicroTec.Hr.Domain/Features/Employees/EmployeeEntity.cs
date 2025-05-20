@@ -2,6 +2,7 @@
 using MicroTec.Hr.Domain.Features.Custodies;
 using MicroTec.Hr.Domain.Features.Nationality;
 using MicroTec.Hr.Domain.Shared;
+using MicroTec.Hr.Domain.Shared.DomainEvents;
 
 namespace MicroTec.Hr.Domain.Features.Employees
 {
@@ -44,7 +45,7 @@ namespace MicroTec.Hr.Domain.Features.Employees
 
             IsDeleted = true;  //Keep it if the other one doesn't work. 
             SetUpdated(userId);
-            AddDomainEvent(new EmployeeDeletedEvent(Id));
+            AddDomainEvent(new DeleteEvent(Id));
         }
     }
 }

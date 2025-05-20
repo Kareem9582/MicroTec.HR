@@ -18,7 +18,7 @@ namespace MicroTec.Hr.Services.Employees.CreateEmployee
         {
             return rule
                     .NotEmpty().WithMessage("Full name is required.")
-                    .MaximumLength(200).WithMessage("Employee code must not exceed 200 digits.");
+                    .MaximumLength(200).WithMessage("Employee Name must not exceed 200 digits.");
         }
 
         public static IRuleBuilderOptions<T, DateTimeOffset> BirthDateRules<T>(this IRuleBuilder<T, DateTimeOffset> rule)
